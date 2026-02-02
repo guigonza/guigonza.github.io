@@ -718,19 +718,27 @@ body {
 }
 
 @keyframes scroll {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-  50% { transform: translateX(-50%) translateY(10px); opacity: 0; }
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateX(-50%) translateY(10px); 
+    opacity: 0.3; 
+  }
 }
 
 @keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .scroll-indicator span {
-  font-size: 10px;
   color: var(--neon-green);
+  font-size: 10px;
   letter-spacing: 3px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1663,3 +1671,158 @@ body {
 
 .hidden { display: none !important; }
 .visible { display: block !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLL INDICATOR - Posición fija independiente
+═══════════════════════════════════════════════════════════════════ */
+
+.scroll-indicator-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -60px;
+  margin-bottom: 40px;
+  z-index: 10;
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: scrollBounce 2s infinite;
+  background: rgba(10, 10, 10, 0.95);
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+.mouse {
+  width: 22px;
+  height: 34px;
+  border: 2px solid var(--neon-green);
+  border-radius: 12px;
+  position: relative;
+}
+
+.wheel {
+  width: 3px;
+  height: 8px;
+  background: var(--neon-green);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateX(-50%) translateY(10px); 
+    opacity: 0.3; 
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.scroll-indicator span {
+  color: var(--neon-green);
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER ASCII - Responsive
+═══════════════════════════════════════════════════════════════════ */
+
+.footer-ascii {
+  margin-bottom: 20px;
+}
+
+.footer-ascii pre {
+  font-family: var(--font-mono);
+  color: var(--neon-green);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  line-height: 1.1;
+}
+
+.ascii-full {
+  display: block;
+  font-size: 8px;
+}
+
+.ascii-mobile {
+  display: none;
+  font-size: 24px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .ascii-full {
+    font-size: 6px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .scroll-indicator-wrapper {
+    margin-top: -40px;
+    margin-bottom: 30px;
+  }
+  
+  .scroll-indicator {
+    padding: 10px 14px;
+    gap: 6px;
+  }
+  
+  .mouse {
+    width: 18px;
+    height: 28px;
+  }
+  
+  .scroll-indicator span {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  
+  /* ASCII Art - Mostrar versión móvil */
+  .ascii-full {
+    display: none;
+  }
+  
+  .ascii-mobile {
+    display: block;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .scroll-indicator-wrapper {
+    margin-top: -30px;
+    margin-bottom: 20px;
+  }
+  
+  .ascii-mobile {
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+}
