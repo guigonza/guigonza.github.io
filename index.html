@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Guillermo González — Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="description" content="Guillermo González — Software Developer. C, C++, sistemas UNIX, proyectos 42 School.">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div class="left">
+        <div class="photo-ring">
+          <img src="assets/profile.jpeg" alt="Guillermo" class="avatar" />
+        </div>
+      </div>
+      <div class="right">
+        <h1>Guillermo González Calderón</h1>
+        <p class="role">Software Developer · C / C++ · Linux / UNIX · 42 Madrid</p>
+        <p class="lead">Desarrollo software de sistemas y herramientas en C/C++. Background en Publicidad y Marketing; comunico soluciones técnicas con impacto en negocio.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">Proyectos</a>
+          <a class="btn ghost" href="assets/Guillermo_CV.pdf" target="_blank">Descargar CV</a>
+          <a class="btn" href="mailto:guillegoncal@gmail.com">Contactar</a>
+          <button id="themeToggle" class="icon-btn" title="Toggle dark/light">🌓</button>
+        </div>
+        <div class="links small">
+          <a href="https://github.com/guigonza" target="_blank">GitHub</a> ·
+          <a href="https://www.linkedin.com/in/guillermo-gonzalez-calderon/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about" class="card">
+      <h2>Sobre mí</h2>
+      <p>Desarrollador en formación en 42 Madrid, especializado en programación de bajo nivel (C/C++) y sistemas UNIX. Trabajo en proyectos como shells, librerías y utilidades; aplico buenas prácticas de testing y debugging. Mi experiencia en marketing y comunicación aporta visión analítica y claridad a la documentación técnica.</p>
+    </section>
+
+    <section id="skills" class="card">
+      <h2>Habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <div class="skill-title">C / C++</div>
+          <div class="meter" data-level="90"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">Linux / UNIX</div>
+          <div class="meter" data-level="85"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">Algoritmos & Estructuras</div>
+          <div class="meter" data-level="78"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">Debugging (GDB / Valgrind)</div>
+          <div class="meter" data-level="80"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">Shell scripting / Makefiles</div>
+          <div class="meter" data-level="72"><span></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">Ciberseguridad (básico)</div>
+          <div class="meter" data-level="45"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="card">
+      <div class="section-head">
+        <h2>Proyectos</h2>
+        <div class="filters">
+          <button data-filter="all" class="filter active">Todos</button>
+          <button data-filter="c">C</button>
+          <button data-filter="cpp">C++</button>
+          <button data-filter="sys">Sistemas</button>
+        </div>
+      </div>
+      <p class="muted">Haz clic en un proyecto para detalles y cómo ejecutar localmente.</p>
+      <div id="projects-grid" class="projects-grid"></div>
+    </section>
+
+    <section id="cyber" class="card">
+      <h2>Cyber Module — progreso (guardado local)</h2>
+      <p class="muted">Simula experimentos de aprendizaje y presenta una insignia resumen.</p>
+      <div class="cyber-grid">
+        <div class="lab"><label>Reconocimiento: <span id="s1v">45%</span></label><input id="s1" type="range" min="0" max="100" value="45"></div>
+        <div class="lab"><label>Enumeración: <span id="s2v">20%</span></label><input id="s2" type="range" min="0" max="100" value="20"></div>
+        <div class="lab"><label>Explotación: <span id="s3v">10%</span></label><input id="s3" type="range" min="0" max="100" value="10"></div>
+      </div>
+      <div class="lab-actions">
+        <button id="saveLab" class="btn primary">Guardar progreso</button>
+        <button id="resetLab" class="btn ghost">Resetear</button>
+        <div id="labBadge" class="badge-area"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contacto</h2>
+      <p>Email: <a href="mailto:guillegoncal@gmail.com">guillegoncal@gmail.com</a> · Madrid / Remoto</p>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-wrap">
+      <button id="modalClose" class="modal-close">✕</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <div id="modalActions"></div>
+      <div id="modalRun" class="run-local"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 Guillermo González — Portfolio · <small>Built with HTML/CSS/JS</small></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+  
