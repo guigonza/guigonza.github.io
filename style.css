@@ -799,14 +799,14 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ABOUT SECTION
+   ABOUT SECTION - Lista mejorada
    ═══════════════════════════════════════════════════════════════════ */
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 280px;
   gap: 40px;
-  align-items: start;
+  align-items: stretch
 }
 
 .about-text {
@@ -1792,4 +1792,77 @@ body {
     font-size: 18px;
     letter-spacing: 5px;
   }
+}
+
+/* Cyber Section - Static Version */
+.cyber-content {
+  padding: 1rem 0;
+}
+
+.cyber-intro {
+  margin-bottom: 0.5rem;
+}
+
+.cyber-description {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cyber-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tool-category h4 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.tool-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tool-list li {
+  padding: 0.3rem 0;
+  color: var(--text-secondary);
+}
+
+.tool-list code {
+  background: rgba(0, 255, 65, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--primary);
+}
+
+.cyber-platforms {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.platform-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.platform-badge.htb {
+  background: rgba(159, 239, 0, 0.15);
+  color: #9fef00;
+  border: 1px solid #9fef00;
+}
+
+.platform-badge.thm {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff4444;
+  border: 1px solid #ff4444;
 }

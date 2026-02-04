@@ -144,28 +144,31 @@
       </div>
       <div class="card-content">
         <div class="about-grid">
-          <div class="about-text">
-            <p class="terminal-text">
-              <span class="line-number">01</span> Desarrollador en formación en <span class="highlight">42 Madrid</span>, especializado en 
-              <span class="line-number">02</span> programación de bajo nivel (<span class="code-highlight">C/C++</span>) y sistemas <span class="code-highlight">UNIX</span>.
-              <span class="line-number">03</span> Trabajo en proyectos como shells, librerías y utilidades;
-              <span class="line-number">04</span> aplico buenas prácticas de <span class="highlight">testing</span> y <span class="highlight">debugging</span>.
-              <span class="line-number">05</span> Mi experiencia en marketing y comunicación aporta visión
-              <span class="line-number">06</span> analítica y claridad a la documentación técnica.
-            </p>
+          <div class="about-text terminal-text">
+            <p class="about-cmd"><span class="prompt">$</span> cat about_me.txt</p>
+            <ul class="about-list">
+              <li><span class="line-number">01</span><span class="highlight">Desarrollador de sistemas</span> en formación en 42 Madrid</li>
+              <li><span class="line-number">02</span>Especializado en <span class="code-highlight">C</span> y programación de bajo nivel</li>
+              <li><span class="line-number">03</span>Entusiasta de la <span class="highlight">ciberseguridad</span> y el pentesting</li>
+              <li><span class="line-number">04</span>Resolviendo máquinas en <span class="code-highlight">Hack The Box</span> y <span class="code-highlight">TryHackMe</span></li>
+              <li><span class="line-number">05</span>Experiencia en <span class="highlight">Linux</span> y administración de sistemas</li>
+              <li><span class="line-number">06</span>Apasionado por la <span class="highlight">automatización</span> con Bash scripting</li>
+              <li><span class="line-number">07</span>Metodología de aprendizaje <span class="code-highlight">peer-to-peer</span></li>
+              <li><span class="line-number">08</span>Siempre buscando nuevos <span class="highlight">retos técnicos</span></li>
+            </ul>
           </div>
           <div class="about-stats">
             <div class="stat-item">
-              <span class="stat-value" data-count="10">0</span>
-              <span class="stat-label">Proyectos</span>
+              <span class="stat-value">42</span>
+              <span class="stat-label">Madrid</span>
             </div>
             <div class="stat-item">
-              <span class="stat-value" data-count="2">0</span>
-              <span class="stat-label">Años Coding</span>
+              <span class="stat-value">C</span>
+              <span class="stat-label">Main Lang</span>
             </div>
             <div class="stat-item">
-              <span class="stat-value">∞</span>
-              <span class="stat-label">Café ☕</span>
+              <span class="stat-value">24/7</span>
+              <span class="stat-label">Learning</span>
             </div>
           </div>
         </div>
@@ -279,52 +282,58 @@
     <section id="cyber" class="card terminal-card cyber-section" data-aos="fade-up">
       <div class="card-header">
         <span class="card-icon cyber-icon">☠️</span>
-        <h2 class="glitch-hover cyber-title" data-text="Cyber Module">Cyber Module</h2>
+        <h2 class="glitch-hover cyber-title" data-text="Ciberseguridad">Ciberseguridad</h2>
         <span class="card-decoration cyber-deco"></span>
       </div>
-      <p class="muted cyber-subtitle">
-        <span class="warning-icon">⚠️</span> SISTEMA DE ENTRENAMIENTO — progreso guardado localmente
-      </p>
-      <div class="cyber-grid">
-        <div class="lab">
-          <div class="lab-header">
-            <span class="lab-icon">🔎</span>
-            <label>Reconocimiento</label>
-            <span class="lab-value" id="s1v">45%</span>
+      <div class="cyber-content">
+        <p class="cyber-intro terminal-text">
+          <span class="prompt">$</span> cat cybersecurity_skills.txt
+        </p>
+        <p class="cyber-description">
+          Conocimientos en pruebas de penetración y análisis de vulnerabilidades mediante la resolución de máquinas en plataformas como <span class="highlight">Hack The Box</span> y <span class="highlight">TryHackMe</span>.
+        </p>
+        
+        <div class="cyber-tools-grid">
+          <div class="tool-category">
+            <h4><span class="category-icon">🔎</span> Reconocimiento</h4>
+            <ul class="tool-list">
+              <li><code>Nmap</code></li>
+              <li><code>Gobuster</code></li>
+              <li><code>dirb</code></li>
+            </ul>
           </div>
-          <input id="s1" type="range" min="0" max="100" value="45" class="cyber-slider">
-          <div class="slider-track"></div>
-        </div>
-        <div class="lab">
-          <div class="lab-header">
-            <span class="lab-icon">📊</span>
-            <label>Enumeración</label>
-            <span class="lab-value" id="s2v">20%</span>
+          
+          <div class="tool-category">
+            <h4><span class="category-icon">💉</span> Explotación Web</h4>
+            <ul class="tool-list">
+              <li><code>Burp Suite</code></li>
+              <li><code>SQLi</code></li>
+              <li><code>XSS</code></li>
+            </ul>
           </div>
-          <input id="s2" type="range" min="0" max="100" value="20" class="cyber-slider">
-          <div class="slider-track"></div>
-        </div>
-        <div class="lab">
-          <div class="lab-header">
-            <span class="lab-icon">💉</span>
-            <label>Explotación</label>
-            <span class="lab-value" id="s3v">10%</span>
+          
+          <div class="tool-category">
+            <h4><span class="category-icon">🔓</span> Cracking</h4>
+            <ul class="tool-list">
+              <li><code>Hashcat</code></li>
+              <li><code>John the Ripper</code></li>
+              <li><code>Hydra</code></li>
+            </ul>
           </div>
-          <input id="s3" type="range" min="0" max="100" value="10" class="cyber-slider">
-          <div class="slider-track"></div>
+          
+          <div class="tool-category">
+            <h4><span class="category-icon">⚙️</span> Automatización</h4>
+            <ul class="tool-list">
+              <li><code>Bash scripting</code></li>
+              <li><code>Python</code></li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="lab-actions">
-        <button id="saveLab" class="btn cyber-btn primary">
-          <span class="btn-icon">💾</span> Guardar progreso
-        </button>
-        <button id="resetLab" class="btn cyber-btn ghost">
-          <span class="btn-icon">🔄</span> Resetear
-        </button>
-        <div id="labBadge" class="badge-area"></div>
-      </div>
-      <div class="cyber-decoration">
-        <div class="hex-grid"></div>
+        
+        <div class="cyber-platforms">
+          <span class="platform-badge htb">Hack The Box</span>
+          <span class="platform-badge thm">TryHackMe</span>
+        </div>
       </div>
     </section>
 
