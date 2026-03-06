@@ -5,65 +5,175 @@
 
 // ═══════════════════════════════════════════════════════════════════
 // PROJECTS DATA
+// Pinned repos: actualiza este array con tus repos pinneados en GitHub
+// en el orden en que quieres que aparezcan.
 // ═══════════════════════════════════════════════════════════════════
 
-const projects = [
-  { 
-    name: 'minishell', 
-    repo: 'https://github.com/guigonza/minishell', 
-    desc: 'Implementación completa de una shell POSIX: tokenización, parser de expresiones, expansión de variables, pipes encadenados, redirecciones y manejo de señales. Mayor complejidad arquitectónica del currículum. ⭐', 
-    tags: ['c', 'sys'],
-    featured: true
-  },
-  { 
-    name: 'philosophers', 
-    repo: 'https://github.com/guigonza/philosophers', 
-    desc: 'Simulación concurrente con hilos POSIX: detección de deadlocks, condiciones de carrera y sincronización de recursos compartidos con mutex.', 
+const GITHUB_USER = 'guigonza';
+
+// Nombres exactos de los repos tal como aparecen en GitHub (los pinneados)
+const PINNED_REPOS = [
+  'minishell',
+  'push_swap',
+  'pipex',
+  'philosophers',
+  'fractol',
+  'libft'
+];
+
+// Datos enriquecidos locales: descripciones y tags propios por repo
+// La clave es el nombre exacto del repo en GitHub
+const LOCAL_PROJECT_DATA = {
+  'minishell': {
+    desc: 'Implementación completa de una shell POSIX: tokenización, parser de expresiones, expansión de variables, pipes encadenados, redirecciones y manejo de señales. Mayor complejidad arquitectónica del currículum.',
     tags: ['c', 'sys']
   },
-  { 
-    name: 'push_swap', 
-    repo: 'https://github.com/guigonza/push_swap', 
-    desc: 'Ordenación de stacks con movimientos mínimos: análisis de complejidad y optimización algorítmica.', 
-    tags: ['c']
-  },
-  { 
-    name: 'pipex', 
-    repo: 'https://github.com/guigonza/pipex', 
-    desc: 'Emulación de pipes Unix con fork/exec, duplicación de descriptores de fichero y gestión robusta de errores del sistema.', 
+  'philosophers': {
+    desc: 'Simulación concurrente con hilos POSIX: detección de deadlocks, condiciones de carrera y sincronización de recursos compartidos con mutex.',
     tags: ['c', 'sys']
   },
-  { 
-    name: 'libft / ft_printf / gnl', 
-    repo: 'https://github.com/guigonza/libft', 
-    desc: 'Reimplementación de la librería estándar de C sin funciones externas: comprensión profunda de memoria, punteros y comportamiento del sistema. ⭐', 
+  'push_swap': {
+    desc: 'Ordenación de stacks con movimientos mínimos: análisis de complejidad y optimización algorítmica.',
     tags: ['c']
   },
-  { 
-    name: 'fractol', 
-    repo: 'https://github.com/guigonza/fractol', 
-    desc: 'Renderizado interactivo de fractales (Mandelbrot, Julia) con gestión de eventos y optimización de render frame a frame.', 
+  'pipex': {
+    desc: 'Emulación de pipes Unix con fork/exec, duplicación de descriptores de fichero y gestión robusta de errores del sistema.',
+    tags: ['c', 'sys']
+  },
+  'libft': {
+    desc: 'Reimplementación de la librería estándar de C sin funciones externas: comprensión profunda de memoria, punteros y comportamiento del sistema.',
     tags: ['c']
   },
-  { 
-    name: 'C++ Módulos 00–06', 
-    repo: 'https://github.com/guigonza/cpp02', 
-    desc: 'OOP progresivo: clases, memoria dinámica, polimorfismo, herencia múltiple, sobrecarga de operadores e interfaces abstractas — equivalente a patrones de diseño.', 
+  'ft_printf': {
+    desc: 'Reimplementación de printf: variadic functions, formateo y conversiones de tipos.',
+    tags: ['c']
+  },
+  'gnl': {
+    desc: 'Get Next Line — lectura por línea optimizada con gestión de buffers y static variables.',
+    tags: ['c']
+  },
+  'fractol': {
+    desc: 'Renderizado interactivo de fractales (Mandelbrot, Julia) con gestión de eventos y optimización de render frame a frame.',
+    tags: ['c']
+  },
+  'cpp02': {
+    desc: 'C++ Module 02 — Polimorfismo ad-hoc, sobrecarga de operadores y forma canónica ortodoxa.',
     tags: ['cpp']
   },
-  { 
-    name: 'cpp01', 
-    repo: 'https://github.com/guigonza/cpp01', 
-    desc: 'C++ Module 01 — Alocación de memoria, liberación, punteros a miembros y referencias.', 
+  'cpp01': {
+    desc: 'C++ Module 01 — Alocación de memoria, punteros a miembros y referencias.',
     tags: ['cpp']
   },
-  { 
-    name: 'cpp00', 
-    repo: 'https://github.com/guigonza/cpp00', 
-    desc: 'C++ Module 00 — Primer contacto: namespaces, clases, funciones miembro, flujos I/O.', 
+  'cpp00': {
+    desc: 'C++ Module 00 — Namespaces, clases, funciones miembro, flujos I/O.',
     tags: ['cpp']
   }
-];
+};
+
+// Repos a excluir (forks, perfil README, etc.)
+const EXCLUDED_REPOS = ['guigonza'];
+
+// Array de proyectos final — se rellena dinámicamente desde GitHub API
+let projects = [];
+
+// ═══════════════════════════════════════════════════════════════════
+// GITHUB API FETCH — carga repos reales ordenados por último push
+// ═══════════════════════════════════════════════════════════════════
+
+function timeAgo(dateStr) {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days === 0) return 'hoy';
+  if (days === 1) return 'ayer';
+  if (days < 30) return `hace ${days}d`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return `hace ${months}m`;
+  return `hace ${Math.floor(months / 12)}a`;
+}
+
+function getTagsFromLanguage(lang) {
+  if (!lang) return [];
+  const l = lang.toLowerCase();
+  if (l === 'c++') return ['cpp'];
+  if (l === 'c') return ['c'];
+  return [];
+}
+
+async function fetchGitHubRepos() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  // Mostrar skeleton loader
+  grid.innerHTML = `
+    <div class="project-skeleton"></div>
+    <div class="project-skeleton"></div>
+    <div class="project-skeleton"></div>
+  `;
+
+  try {
+    const res = await fetch(
+      `https://api.github.com/users/${GITHUB_USER}/repos?sort=pushed&direction=desc&per_page=50`
+    );
+
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+
+    const githubRepos = await res.json();
+
+    // Filtrar forks y excluidos
+    const filtered = githubRepos.filter(r => !r.fork && !EXCLUDED_REPOS.includes(r.name));
+
+    // Construir objetos de proyecto mezclando datos de API + locales
+    const allProjects = filtered.map(r => {
+      const local = LOCAL_PROJECT_DATA[r.name] || {};
+      return {
+        name: r.name,
+        repo: r.html_url,
+        desc: local.desc || r.description || 'Proyecto de 42 Madrid.',
+        tags: local.tags || getTagsFromLanguage(r.language),
+        pushedAt: r.pushed_at,
+        stars: r.stargazers_count,
+        language: r.language
+      };
+    });
+
+    // Separar pinneados del resto
+    const pinnedProjects = PINNED_REPOS
+      .map(name => allProjects.find(p => p.name === name))
+      .filter(Boolean)
+      .map(p => ({ ...p, pinned: true }));
+
+    const pinnedNames = new Set(PINNED_REPOS);
+    const restProjects = allProjects
+      .filter(p => !pinnedNames.has(p.name))
+      .sort((a, b) => new Date(b.pushedAt) - new Date(a.pushedAt));
+
+    projects = [...pinnedProjects, ...restProjects];
+
+    grid.innerHTML = '';
+    renderProjects();
+
+  } catch (err) {
+    console.warn('GitHub API no disponible, usando datos locales:', err.message);
+    // Fallback: usar datos locales estáticos
+    projects = Object.entries(LOCAL_PROJECT_DATA).map(([name, data]) => ({
+      name,
+      repo: `https://github.com/${GITHUB_USER}/${name}`,
+      ...data,
+      pinned: PINNED_REPOS.includes(name)
+    }));
+    // Pinneados primero
+    projects.sort((a, b) => {
+      const ai = PINNED_REPOS.indexOf(a.name);
+      const bi = PINNED_REPOS.indexOf(b.name);
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      if (a.pinned && b.pinned) return ai - bi;
+      return 0;
+    });
+    grid.innerHTML = '';
+    renderProjects();
+  }
+}
 
 // ═══════════════════════════════════════════════════════════════════
 // BOOT SEQUENCE
@@ -282,13 +392,25 @@ function renderProjects() {
 
   projects.forEach((p, index) => {
     const el = document.createElement('div');
-    el.className = 'project-card';
+    el.className = 'project-card' + (p.pinned ? ' pinned' : '');
     el.dataset.tags = (p.tags || []).join(' ');
-    el.style.animationDelay = `${index * 0.1}s`;
-    
+    el.style.animationDelay = `${index * 0.08}s`;
+
+    const pinnedBadge = p.pinned
+      ? `<span class="project-pinned-badge">📌 PINNED</span>`
+      : '';
+
+    const meta = [];
+    if (p.language) meta.push(`<span class="project-lang">${p.language}</span>`);
+    if (p.stars > 0) meta.push(`<span class="project-stars">⭐ ${p.stars}</span>`);
+    if (p.pushedAt) meta.push(`<span class="project-updated">${timeAgo(p.pushedAt)}</span>`);
+    const metaRow = meta.length ? `<div class="project-meta">${meta.join('')}</div>` : '';
+
     el.innerHTML = `
+      ${pinnedBadge}
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
+      ${metaRow}
       <div class="project-links">
         <a href="${p.repo}" target="_blank" rel="noopener">
           <span>→</span> Ver repo
@@ -296,16 +418,10 @@ function renderProjects() {
         <button class="btn cyber-btn view" data-name="${p.name}">Detalles</button>
       </div>
     `;
-    
-    // Add hover sound effect (visual feedback)
-    el.addEventListener('mouseenter', () => {
-      el.style.setProperty('--glow-intensity', '1');
-    });
-    
-    el.addEventListener('mouseleave', () => {
-      el.style.setProperty('--glow-intensity', '0');
-    });
-    
+
+    el.addEventListener('mouseenter', () => el.style.setProperty('--glow-intensity', '1'));
+    el.addEventListener('mouseleave', () => el.style.setProperty('--glow-intensity', '0'));
+
     grid.appendChild(el);
   });
 }
@@ -696,7 +812,7 @@ function activateHackerMode() {
 
 function initializeMainContent() {
   // Core functionality
-  renderProjects();
+  fetchGitHubRepos(); // Carga repos desde GitHub API (pinneados primero, luego por último push)
   initFilters();
   initModal();
   initCyberModule();
