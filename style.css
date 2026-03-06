@@ -284,7 +284,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px 60px;
+  padding: 80px 20px 40px;
   position: relative;
   overflow: hidden;
 }
@@ -1595,10 +1595,6 @@ body {
     flex-direction: column;
   }
   
-  .footer-ascii pre {
-    font-size: 5px;
-  }
-  
   .lab-actions {
     flex-direction: column;
     align-items: stretch;
@@ -1644,12 +1640,11 @@ body {
 ═══════════════════════════════════════════════════════════════════ */
 
 .scroll-indicator-wrapper {
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: -60px;
-  margin-bottom: 40px;
+  align-items: center;
+  padding: 20px 0 40px;
   z-index: 10;
 }
 
@@ -1729,12 +1724,14 @@ body {
 .ascii-full {
   display: block;
   font-size: 8px;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .ascii-mobile {
   display: none;
-  font-size: 24px;
-  letter-spacing: 8px;
+  font-size: 22px;
+  letter-spacing: 6px;
   font-weight: bold;
 }
 
@@ -1742,20 +1739,26 @@ body {
    RESPONSIVE
 ═══════════════════════════════════════════════════════════════════ */
 
-/* Tablet */
+/* Tablet grande: ASCII full empieza a ser pequeño */
 @media (max-width: 1024px) {
   .ascii-full {
-    font-size: 6px;
+    font-size: 5.5px;
+  }
+}
+
+/* Tablet: ocultar ASCII full, mostrar versión texto */
+@media (max-width: 900px) {
+  .ascii-full {
+    display: none;
+  }
+  
+  .ascii-mobile {
+    display: block;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .scroll-indicator-wrapper {
-    margin-top: -40px;
-    margin-bottom: 30px;
-  }
-  
   .scroll-indicator {
     padding: 10px 14px;
     gap: 6px;
@@ -1770,27 +1773,35 @@ body {
     font-size: 8px;
     letter-spacing: 2px;
   }
-  
-  /* ASCII Art - Mostrar versión móvil */
-  .ascii-full {
-    display: none;
+
+  .boot-content {
+    max-width: 100%;
+    padding: 15px;
   }
-  
-  .ascii-mobile {
-    display: block;
+
+  .boot-text {
+    font-size: 10px;
+    word-break: break-all;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
   .scroll-indicator-wrapper {
-    margin-top: -30px;
-    margin-bottom: 20px;
+    padding: 12px 0 24px;
   }
   
   .ascii-mobile {
-    font-size: 18px;
-    letter-spacing: 5px;
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+
+  .scroll-indicator {
+    padding: 8px 12px;
+  }
+
+  .boot-text {
+    font-size: 9px;
   }
 }
 
@@ -1865,4 +1876,106 @@ body {
   background: rgba(255, 0, 0, 0.15);
   color: #ff4444;
   border: 1px solid #ff4444;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EXPERIENCE SECTION
+   ═══════════════════════════════════════════════════════════════════ */
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.exp-item {
+  border-left: 2px solid var(--neon-green-dim);
+  padding-left: 1.5rem;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: var(--glow-green);
+}
+
+.exp-item:hover {
+  border-color: var(--neon-green);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.exp-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.exp-role {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--neon-green);
+  text-shadow: 0 0 8px var(--neon-green);
+}
+
+.exp-company {
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.05em;
+}
+
+.exp-period {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border: 1px solid var(--text-muted);
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+}
+
+.exp-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.exp-bullets li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--neon-green-dim);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .exp-header {
+    flex-direction: column;
+  }
 }

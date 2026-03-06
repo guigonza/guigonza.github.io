@@ -11,63 +11,57 @@ const projects = [
   { 
     name: 'minishell', 
     repo: 'https://github.com/guigonza/minishell', 
-    desc: 'Réplica de shell en C: parsing avanzado, pipes, redirecciones, manejo de señales y procesos. Proyecto destacado con ⭐', 
+    desc: 'Implementación completa de una shell POSIX: tokenización, parser de expresiones, expansión de variables, pipes encadenados, redirecciones y manejo de señales. Mayor complejidad arquitectónica del currículum. ⭐', 
     tags: ['c', 'sys'],
     featured: true
   },
   { 
-    name: 'cpp02', 
-    repo: 'https://github.com/guigonza/cpp02', 
-    desc: 'C++ Module 02 — Polimorfismo ad-hoc, sobrecarga de operadores y forma canónica ortodoxa.', 
-    tags: ['cpp']
-  },
-  { 
-    name: 'cpp01', 
-    repo: 'https://github.com/guigonza/cpp01', 
-    desc: 'C++ Module 01 — Alocación de memoria, liberación, punteros a miembros, referencias y switch statements.', 
-    tags: ['cpp']
-  },
-  { 
-    name: 'cpp00', 
-    repo: 'https://github.com/guigonza/cpp00', 
-    desc: 'C++ Module 00 — Primer contacto con C++: namespaces, clases, funciones miembro, flujos I/O.', 
-    tags: ['cpp']
-  },
-  { 
-    name: 'gnl', 
-    repo: 'https://github.com/guigonza/gnl', 
-    desc: 'Get Next Line — Lectura por línea optimizada con gestión de buffers y static variables. ⭐', 
-    tags: ['c']
-  },
-  { 
-    name: 'libft', 
-    repo: 'https://github.com/guigonza/libft', 
-    desc: 'Librería base con funciones reimplementadas de libc: strings, memoria, listas enlazadas.', 
-    tags: ['c']
-  },
-  { 
-    name: 'fractol', 
-    repo: 'https://github.com/guigonza/fractol', 
-    desc: 'Visualización de fractales (Mandelbrot, Julia, Burning Ship) con MiniLibX y manejo de CGI.', 
-    tags: ['c']
+    name: 'philosophers', 
+    repo: 'https://github.com/guigonza/philosophers', 
+    desc: 'Simulación concurrente con hilos POSIX: detección de deadlocks, condiciones de carrera y sincronización de recursos compartidos con mutex.', 
+    tags: ['c', 'sys']
   },
   { 
     name: 'push_swap', 
     repo: 'https://github.com/guigonza/push_swap', 
-    desc: 'Algoritmo de ordenación con movimientos mínimos entre stacks usando listas enlazadas.', 
+    desc: 'Ordenación de stacks con movimientos mínimos: análisis de complejidad y optimización algorítmica.', 
     tags: ['c']
   },
   { 
     name: 'pipex', 
     repo: 'https://github.com/guigonza/pipex', 
-    desc: 'Emulación de pipes UNIX: duplicación de procesos, redirección de descriptores y ejecución encadenada.', 
+    desc: 'Emulación de pipes Unix con fork/exec, duplicación de descriptores de fichero y gestión robusta de errores del sistema.', 
     tags: ['c', 'sys']
   },
   { 
-    name: 'ft_printf', 
-    repo: 'https://github.com/guigonza/ft_printf', 
-    desc: 'Reimplementación de printf: manejo de variadic functions, formateo y conversiones.', 
+    name: 'libft / ft_printf / gnl', 
+    repo: 'https://github.com/guigonza/libft', 
+    desc: 'Reimplementación de la librería estándar de C sin funciones externas: comprensión profunda de memoria, punteros y comportamiento del sistema. ⭐', 
     tags: ['c']
+  },
+  { 
+    name: 'fractol', 
+    repo: 'https://github.com/guigonza/fractol', 
+    desc: 'Renderizado interactivo de fractales (Mandelbrot, Julia) con gestión de eventos y optimización de render frame a frame.', 
+    tags: ['c']
+  },
+  { 
+    name: 'C++ Módulos 00–06', 
+    repo: 'https://github.com/guigonza/cpp02', 
+    desc: 'OOP progresivo: clases, memoria dinámica, polimorfismo, herencia múltiple, sobrecarga de operadores e interfaces abstractas — equivalente a patrones de diseño.', 
+    tags: ['cpp']
+  },
+  { 
+    name: 'cpp01', 
+    repo: 'https://github.com/guigonza/cpp01', 
+    desc: 'C++ Module 01 — Alocación de memoria, liberación, punteros a miembros y referencias.', 
+    tags: ['cpp']
+  },
+  { 
+    name: 'cpp00', 
+    repo: 'https://github.com/guigonza/cpp00', 
+    desc: 'C++ Module 00 — Primer contacto: namespaces, clases, funciones miembro, flujos I/O.', 
+    tags: ['cpp']
   }
 ];
 
